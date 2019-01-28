@@ -6,7 +6,7 @@ import svgRenderer from './components/svgRenderer.vue'
 import canvasRenderer from './components/canvasRenderer.vue'
 import saveImage from './lib/saveImage.js'
 import svgExport from './lib/svgExport.js'
-import {phyllotaxis} from './lib/util.js'
+import { phyllotaxis } from './lib/util.js'
 
 const phyl = phyllotaxis(10)
 export default {
@@ -130,11 +130,17 @@ export default {
     }
 
     return createElement('div', {
-      attrs: {class: 'net'},
-      on: {'mousemove': this.move, '&touchmove': this.move}
-    }, [createElement(renderer, {
-      props, ref, on: {action: this.methodCall}
-    })])
+      attrs: { class: 'net' },
+      on: { 'mousemove': this.move, '&touchmove': this.move }
+    }, [
+      createElement(
+        renderer,
+        {
+          props, ref, on: { action: this.methodCall }
+        },
+        this.$slots.default
+      )
+    ])
   },
   created () {
     this.updateOptions(this.options)
@@ -346,7 +352,7 @@ export default {
       let y = (event.touches) ? event.touches[0].clientY : event.clientY
       x = x || 0
       y = y || 0
-      return {x, y}
+      return { x, y }
     },
     dragStart (event, nodeKey) {
       this.panDisable = true
@@ -407,48 +413,48 @@ export default {
 </script>
 
 <style lang="stylus">
-  @import 'vars.styl'
+@import 'vars.styl'
 
-  .net
-    height 100%
-    margin 0
+.net
+  height 100%
+  margin 0
 
-  .net-svg
-    // fill: white // background color to export as image
-  .node
-    stroke alpha($dark, 0.7)
-    stroke-width 3px
-    transition fill 0.5s ease
-    fill $white
+.net-svg
+  // fill: white // background color to export as image
+.node
+  stroke alpha($dark, 0.7)
+  stroke-width 3px
+  transition fill 0.5s ease
+  fill $white
 
-  .node.selected
-    stroke $color2
+.node.selected
+  stroke $color2
 
-  .node.pinned
-    stroke alpha($warn, 0.6)
+.node.pinned
+  stroke alpha($warn, 0.6)
 
-  .link
-    stroke alpha($dark, 0.3)
+.link
+  stroke alpha($dark, 0.3)
 
-  .node, .link
-    stroke-linecap round
+.node, .link
+  stroke-linecap round
 
-    &:hover
-      stroke $warn
-      stroke-width 5px
+  &:hover
+    stroke $warn
+    stroke-width 5px
 
-  .link.selected
-    stroke alpha($color2, 0.6)
+.link.selected
+  stroke alpha($color2, 0.6)
 
-  .curve
-    fill none
+.curve
+  fill none
 
-  .node-label
-    fill $dark
+.node-label
+  fill $dark
 
-  .link-label
-    fill $dark
-    transform translate(0, -0.5em)
-    text-anchor middle
-</style>  
+.link-label
+  fill $dark
+  transform translate(0, -0.5em)
+  text-anchor middle
+</style>
 

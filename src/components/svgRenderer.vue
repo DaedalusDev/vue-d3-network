@@ -79,7 +79,7 @@
         )
           tspan(v-if="typeof node.name === 'string'") {{ node.name }}
           tspan(v-else v-for="(n, i) in node.name" :x="node.x + (getNodeSize(node) / 2) + (fontSize / 2)" :dy="i ? '1em':-fontSize / 2") {{ n }}
-    slot
+      slot
 </template>
 <script>
 import svgExport from '../lib/svgExport.js'
