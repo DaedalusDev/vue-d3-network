@@ -1,9 +1,9 @@
 <template lang="pug">
   svg(
-    xmlns="http://www.w3.org/2000/svg" 
+    xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink= "http://www.w3.org/1999/xlink"
-    ref="svg" 
-    :width="size.w" 
+    ref="svg"
+    :width="size.w"
     :height="size.h"
     class="net-svg"
     @mouseup='emit("dragEnd",[$event])'
@@ -79,7 +79,7 @@
         )
           tspan(v-if="typeof node.name === 'string'") {{ node.name }}
           tspan(v-else v-for="(n, i) in node.name" :x="node.x + (getNodeSize(node) / 2) + (fontSize / 2)" :dy="i ? '1em':-fontSize / 2") {{ n }}
-
+    slot
 </template>
 <script>
 import svgExport from '../lib/svgExport.js'
